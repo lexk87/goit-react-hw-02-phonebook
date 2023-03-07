@@ -5,6 +5,9 @@ import {
     Input,
     Error,
     Button,
+    LabelTitle,
+    Wrapper,
+    Info,
 } from './ContactForm.styled';
 import { Formik, Form } from 'formik';
 import { nanoid } from 'nanoid';
@@ -23,13 +26,13 @@ const initialValues = {
 const schema = yup.object().shape({
     name: yup
         .string()
-        .min(3)
+        .min(3, 'Name must be at least 3 characters')
         .matches(nameRegex, 'Please, enter valid name')
-        .required(),
+        .required('Name is a required field'),
     number: yup
         .string()
         .matches(numberRegex, 'Please, enter valid number')
-        .required(),
+        .required('Number is a required field'),
 });
 
 export const ContactForm = ({ contacts, addContact }) => {
@@ -55,26 +58,38 @@ export const ContactForm = ({ contacts, addContact }) => {
                 validationSchema={schema}
             >
                 <Form autoComplete="off">
-                    <Label htmlFor="name">
-                        Name
-                        <Input
-                            type="text"
-                            name="name"
-                            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                        />
-                        <Error component="p" name="name" />
-                    </Label>
+                    <Wrapper>
+                        <Label htmlFor="name">
+                            <LabelTitle>Name</LabelTitle>
+                            <Input
+                                id="name"
+                                type="text"
+                                name="name"
+                                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                            />
+                            <Error component="p" name="name" />
+                        </Label>
 
-                    <Label htmlFor="number">
-                        Number
-                        <Input
-                            type="tel"
-                            name="number"
-                            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                        />
-                        <Error component="p" name="number" />
-                    </Label>
-                    <Button type="submit"></Button>
+                        <Label htmlFor="number">
+                            <LabelTitle>Number</LabelTitle>
+                            <Input
+                                id="number"
+                                type="tel"
+                                name="number"
+                                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                            />
+                            <Error component="p" name="number" />
+                        </Label>
+                    </Wrapper>
+                    <Wrapper>
+                        <Info>
+                            To add a contact to your phonebook, enter the name
+                            and phone number in the corresponding fields and
+                            click the "Add contact" button. To close this
+                            section, click the "Cancel" button.
+                        </Info>
+                        <Button type="submit">Add contact</Button>
+                    </Wrapper>
                 </Form>
             </Formik>
         </FormContainer>

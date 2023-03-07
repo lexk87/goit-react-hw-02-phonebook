@@ -16,6 +16,7 @@ export const ContactListItem = ({ id, name, number, removeContact }) => {
                 <ContactIcon />
                 <RemoveContactBtn
                     type="button"
+                    title="Remove contact"
                     onClick={() => removeContact(id)}
                 >
                     <RemoveContactIcon />

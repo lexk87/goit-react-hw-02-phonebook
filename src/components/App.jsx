@@ -6,6 +6,7 @@ import {
     ContactsTitle,
     Filter,
     ContactList,
+    ContactsContainer,
 } from 'components';
 
 export class App extends Component {
@@ -22,7 +23,7 @@ export class App extends Component {
 
     toggle = () => {
         this.setState(prevState => ({
-            isOpenForm: !prevState,
+            isOpenForm: !prevState.isOpenForm,
         }));
     };
 
@@ -69,12 +70,14 @@ export class App extends Component {
                         />
                     )}
 
-                    <ContactsTitle />
-                    <Filter value={filter} onChange={this.onFilterChange} />
-                    <ContactList
-                        contacts={this.filteredContacts()}
-                        removeContact={this.removeContact}
-                    />
+                    <ContactsContainer>
+                        <ContactsTitle />
+                        <Filter value={filter} onChange={this.onFilterChange} />
+                        <ContactList
+                            contacts={this.filteredContacts()}
+                            removeContact={this.removeContact}
+                        />
+                    </ContactsContainer>
                 </Container>
             </>
         );
