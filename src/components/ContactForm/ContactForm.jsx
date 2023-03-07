@@ -62,7 +62,7 @@ export const ContactForm = ({ contacts, addContact }) => {
                             name="name"
                             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                         />
-                        <Error component={p} name="name" />
+                        <Error component="p" name="name" />
                     </Label>
 
                     <Label htmlFor="number">
@@ -72,7 +72,7 @@ export const ContactForm = ({ contacts, addContact }) => {
                             name="number"
                             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                         />
-                        <Error component={p} name="number" />
+                        <Error component="p" name="number" />
                     </Label>
                     <Button type="submit"></Button>
                 </Form>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { FilterContainer, FilterLabel, FilterInput } from './Filter.styled';
 
-export const ContactsFilter = ({ value, onChange }) => {
+export const Filter = ({ value, onChange }) => {
     return (
         <FilterContainer>
             <FilterLabel htmlFor="filter">
@@ -17,7 +17,7 @@ export const ContactsFilter = ({ value, onChange }) => {
     );
 };
 
-ContactsFilter.propTypes = {
+Filter.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func,
 };

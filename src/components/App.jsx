@@ -36,6 +36,25 @@ export class App extends Component {
         this.setState({ filter: e.currentTarget.value });
     };
 
+    filteredContacts = () => {
+        const { contacts, filter } = this.state;
+        const normalizedFilter = filter.toLowerCase();
+
+        return contacts.filter(contact =>
+            contact.name.toLowerCase().includes(normalizedFilter)
+        );
+    };
+
+    removeContact = id => {
+        this.setState(prevState => {
+            return {
+                contacts: prevState.contacts.filter(
+                    contact => contact.id !== id
+                ),
+            };
+        });
+    };
+
     render() {
         const { contacts, filter, isOpenForm } = this.state;
 
@@ -52,7 +71,10 @@ export class App extends Component {
 
                     <ContactsTitle />
                     <Filter value={filter} onChange={this.onFilterChange} />
-                    <ContactList />
+                    <ContactList
+                        contacts={this.filteredContacts()}
+                        removeContact={this.removeContact}
+                    />
                 </Container>
             </>
         );

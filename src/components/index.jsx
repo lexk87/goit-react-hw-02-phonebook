@@ -4,3 +4,4 @@ export * from './ContactsTitle/ContactsTitle';
 export * from './Filter/Filter';
 export * from './ContactList/ContactList';
 export * from './ContactForm/ContactForm';
+export * from './ContactListItem/ContactListItem';
