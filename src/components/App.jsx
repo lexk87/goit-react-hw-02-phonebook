@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import {
+    Container,
+    Header,
+    ContactForm,
+    ContactsTitle,
+    Filter,
+    ContactList,
+} from 'components';
 
 export class App extends Component {
     state = {
@@ -9,14 +17,34 @@ export class App extends Component {
             { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
         ],
         filter: '',
+        isOpenForm: false,
+    };
+
+    toggle = () => {
+        this.setState(prevState => ({
+            isOpenForm: !prevState,
+        }));
+    };
+
+    addContact = contact => {
+        this.setState(prevState => ({
+            contacts: [contact, ...prevState.contacts],
+        }));
     };
 
     render() {
+        const { contacts, filter, isOpenForm } = this.state;
+
         return (
             <>
                 <Container>
-                    <Header />
-                    <ContactForm />
+                    <Header isOpenForm={isOpenForm} toggle={this.toggle} />
+                    {isOpenForm && (
+                        <ContactForm
+                            contacts={contacts}
+                            addContact={this.addContact}
+                        />
+                    )}
 
                     <ContactsTitle />
                     <Filter />
