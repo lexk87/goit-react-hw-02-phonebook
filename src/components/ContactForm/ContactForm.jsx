@@ -80,3 +80,8 @@ export const ContactForm = ({ contacts, addContact }) => {
         </FormContainer>
     );
 };
+
+ContactForm.propTypes = {
+    contacts: PropTypes.array,
+    addContact: PropTypes.func,
+};

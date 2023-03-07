@@ -32,6 +32,10 @@ export class App extends Component {
         }));
     };
 
+    onFilterChange = e => {
+        this.setState({ filter: e.currentTarget.value });
+    };
+
     render() {
         const { contacts, filter, isOpenForm } = this.state;
 
@@ -47,7 +51,7 @@ export class App extends Component {
                     )}
 
                     <ContactsTitle />
-                    <Filter />
+                    <Filter value={filter} onChange={this.onFilterChange} />
                     <ContactList />
                 </Container>
             </>
