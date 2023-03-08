@@ -35,18 +35,10 @@ const schema = yup.object().shape({
         .required('Number is a required field'),
 });
 
-export const ContactForm = ({ contacts, addContact }) => {
+export const ContactForm = ({ addContact }) => {
     const handleSubmit = (values, { resetForm }) => {
         values.id = nanoid();
-
-        const isContactIncluded = contacts.some(
-            contact => contact.name.toLowerCase() === values.name.toLowerCase()
-        );
-
-        isContactIncluded
-            ? alert(`${values.name} is already in contacts`)
-            : addContact(values);
-
+        addContact(values);
         resetForm();
     };
 
@@ -97,6 +89,5 @@ export const ContactForm = ({ contacts, addContact }) => {
 };
 
 ContactForm.propTypes = {
-    contacts: PropTypes.array,
     addContact: PropTypes.func,
 };

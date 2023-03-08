@@ -27,10 +27,19 @@ export class App extends Component {
         }));
     };
 
-    addContact = contact => {
-        this.setState(prevState => ({
-            contacts: [contact, ...prevState.contacts],
-        }));
+    addContact = newContact => {
+        const { contacts } = this.state;
+
+        const isContactIncluded = contacts.some(
+            contact =>
+                contact.name.toLowerCase() === newContact.name.toLowerCase()
+        );
+
+        isContactIncluded
+            ? alert(`${newContact.name} is already in contacts`)
+            : this.setState(prevState => ({
+                  contacts: [newContact, ...prevState.contacts],
+              }));
     };
 
     onFilterChange = e => {
@@ -57,18 +66,13 @@ export class App extends Component {
     };
 
     render() {
-        const { contacts, filter, isOpenForm } = this.state;
+        const { filter, isOpenForm } = this.state;
 
         return (
             <>
                 <Container>
                     <Header isOpenForm={isOpenForm} toggle={this.toggle} />
-                    {isOpenForm && (
-                        <ContactForm
-                            contacts={contacts}
-                            addContact={this.addContact}
-                        />
-                    )}
+                    {isOpenForm && <ContactForm addContact={this.addContact} />}
 
                     <ContactsContainer>
                         <ContactsTitle />

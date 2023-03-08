@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FilterContainer = styled.div`
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 `;
 
 export const FilterLabel = styled.label``;
